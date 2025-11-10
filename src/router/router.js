@@ -1,8 +1,6 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 // 页面组件导入
 import MainLayout from '../App.js' // 主布局组件
-import JavaScriptQuestion from '@/views/questionBank/javascript/index.jsx'
-import CssStyleQuestion from '@/views/questionBank/csss/index.jsx'
 import RecordBill from '@/views/me/recordBill/index.jsx'
 import BillDetail from '@/views/me/billDetail/index.jsx'
 import Statistics from '@/views/me/billDetail/statistics/index.jsx' // 统计页面
@@ -14,6 +12,7 @@ import AdvancedFeatures from '@/views/todo/highAction/index.jsx'
 import PageFeatures from '@/views/todo/pageAction/index.jsx'
 import PageCanvas from '@/views/todo/canvas/index.jsx'
 import Page3dAnimation from '@/views/todo/3dAnimation/index.jsx'
+import Schedule from '@/views/home/schedule/index.jsx'
 
 // 路由配置数组
 const routeConfig = [
@@ -39,6 +38,17 @@ const routeConfig = [
   {
     path: '/todo',
     element: <MainLayout />
+  },
+
+  {
+    path: 'home',
+    children: [
+      {
+        path: 'schedule',
+        name: '课程表',
+        element: <Schedule />
+      }
+    ]
   },
 
   // "我的"页面子路由
@@ -67,16 +77,6 @@ const routeConfig = [
   {
     path: 'todo',
     children: [
-      {
-        path: 'javascript',
-        name: 'javascript相关',
-        element: <JavaScriptQuestion />
-      },
-      {
-        path: 'style',
-        name: '样式',
-        element: <CssStyleQuestion />
-      },
       {
         path: 'optimize',
         name: '性能优化',
