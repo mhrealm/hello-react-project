@@ -13,6 +13,7 @@ import PageFeatures from '@/views/todo/pageAction/index.jsx'
 import PageCanvas from '@/views/todo/canvas/index.jsx'
 import Page3dAnimation from '@/views/todo/3dAnimation/index.jsx'
 import Schedule from '@/views/home/schedule/index.jsx'
+import VideoRelated from '@/views/todo/videoRelated/index.jsx'
 
 // 路由配置数组
 const routeConfig = [
@@ -81,6 +82,11 @@ const routeConfig = [
         path: 'optimize',
         name: '性能优化',
         element: <OptimizeQuestion />
+      },
+      {
+        path: 'video-related',
+        name: '视频相关',
+        element: <VideoRelated />
       },
       {
         path: 'react',
