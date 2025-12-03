@@ -1,1 +1,43 @@
 <!-- 视频播放相关问题 -->
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 200px;
+  }
+
+  .container li {
+    cursor: pointer;
+  }
+</style>
+
+<ul class="container">
+  <li>列表1</li>
+  <li>列表2</li>
+  <li>列表3</li>
+  <li>列表4</li>
+  <li>列表5</li>
+  <li>列表6</li>
+  <li>列表7</li>
+  <li>列表8</li>
+</ul>
+
+<script>
+  // 获取所有列表项
+  const listItems = document.querySelectorAll('.container li');
+
+  // 给每个列表项绑定点击事件
+  listItems.forEach((item, index) => {
+    item.addEventListener('click', () => {
+      // 索引从1开始（对应列表1→id=1，列表2→id=2...）
+      const id = index + 1;
+      // 跳转到详情页（路径根据实际需求修改）
+      // 原生多页面跳转
+      window.location.href = `detail.html`;
+
+      // 如果是SPA路由（如Vue/React），可使用路由跳转方法
+      // 例：history.push(`/detail/${id}`);
+    });
+  });
+
+</script>
