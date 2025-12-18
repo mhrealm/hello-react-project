@@ -16,12 +16,12 @@ const UpdateObject = () => {
     })
   }
   return (
-    <div className="min-module">
+    <section>
       <h1>2、更新状态中的对象和数组</h1>
       <button onClick={handleClick}>
         name: {person.name} == age:{person.age}
       </button>
-    </div>
+    </section>
   )
 }
 export default UpdateObject

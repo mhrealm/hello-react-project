@@ -32,7 +32,7 @@ const NotRepeatCreate = () => {
     setText(e.target.value)
   }
   return (
-    <div className="min-module">
+    <section>
       <h1>3、如何避免重新创建初始化状态</h1>
       <input value={text} onChange={onChange} />
       <button onClick={addClick}>Add</button>
@@ -41,7 +41,7 @@ const NotRepeatCreate = () => {
           <li key={item.id}>{item.text}</li>
         ))}
       </ul>
-    </div>
+    </section>
   )
 }
 export default NotRepeatCreate

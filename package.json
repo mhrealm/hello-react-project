@@ -22,7 +22,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "dev": "craco start",
+    "dev": "craco start --no-open",
     "build": "craco build",
     "test": "craco test",
     "eject": "craco eject"

@@ -14,10 +14,10 @@ const Malfunction2 = () => {
   }
 
   return (
-    <div className="min-module">
+    <section>
       <h1>6、故障排查:状态改变，日志记录没有更新?</h1>
       <button onClick={handleChange}>age:{person.age}</button>
-    </div>
+    </section>
   )
 }
 export default Malfunction2

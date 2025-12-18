@@ -15,10 +15,10 @@ const AddState = () => {
     setAge(val => val + 1)
   }
   return (
-    <div className="min-module">
+    <section>
       <h1>1、向组件中添加状态,并根据之前的状态改变状态</h1>
       <button onClick={handleClick}>age: {age} </button>
-    </div>
+    </section>
   )
 }
 

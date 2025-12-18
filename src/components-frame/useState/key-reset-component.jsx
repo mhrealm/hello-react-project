@@ -10,11 +10,11 @@ const KeyResetComponent = () => {
     setKey(key + 1)
   }
   return (
-    <div className="min-module">
+    <section>
       <h1>4、通过键值重置组件状态</h1>
       <button onClick={handleReset}>Reset</button>
       <Input key={key} />
-    </div>
+    </section>
   )
 }
 
