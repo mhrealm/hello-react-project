@@ -1,10 +1,6 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 // 页面组件导入
 import MainLayout from '../App.js' // 主布局组件
-import RecordBill from '@/views/me/recordBill/index.jsx'
-import BillDetail from '@/views/me/billDetail/index.jsx'
-import Statistics from '@/views/me/billDetail/statistics/index.jsx' // 统计页面
-
 import ReactQuestion from '@/views/todo/react/index.jsx'
 import OptimizeQuestion from '@/views/todo/optimize/index.jsx'
 import BuiltInHook from '@/views/todo/builtInHook/index.jsx'
@@ -55,23 +51,7 @@ const routeConfig = [
   // "我的"页面子路由
   {
     path: 'me',
-    children: [
-      {
-        path: 'record-bill',
-        name: '记录账单',
-        element: <RecordBill />
-      },
-      {
-        path: 'bill-detail',
-        name: '账单明细',
-        element: <BillDetail />
-      },
-      {
-        path: 'statistics',
-        name: '数据图表',
-        element: <Statistics />
-      }
-    ]
+    children: []
   },
 
   // "待办"页面子路由
