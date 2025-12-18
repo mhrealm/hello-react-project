@@ -13,3 +13,89 @@ li {
   margin: 0;
   padding: 0;
 }
+
+.knowledge-module {
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: #333;
+}
+
+// 最小模块的样式
+.min-module {
+  margin-bottom: 24px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  }
+
+  h1 {
+    margin: 0 0 16px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #2c3e50;
+    line-height: 1.5;
+  }
+
+  button {
+    padding: 10px 20px;
+    background-color: #42b983;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #369a6f;
+      box-shadow: 0 2px 8px rgba(66, 185, 131, 0.3);
+    }
+  }
+
+  input {
+    padding: 10px 12px;
+    border: 1px solid #dcdfe6;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-right: 10px;
+    outline: none;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      border-color: #42b983;
+      box-shadow: 0 0 0 2px rgba(66, 185, 131, 0.2);
+    }
+  }
+
+  ul {
+    max-height: 120px;
+    overflow-y: auto;
+    margin-top: 12px;
+    border: 1px solid #f0f0f0;
+    border-radius: 4px;
+    padding: 8px 0;
+
+    li {
+      padding: 8px 16px;
+      margin: 0;
+      list-style: none;
+      font-size: 14px;
+      color: #555;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: #f5f7fa;
+      }
+
+      &:nth-child(even) {
+        background-color: #fafafa;
+      }
+    }
+  }
+}

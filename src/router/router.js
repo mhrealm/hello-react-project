@@ -34,6 +34,7 @@ const routeConfig = [
       {
         path: 'useState',
         name: 'useState',
+        grade: '1', // 难度等级
         element: (
           <Suspense fallback={<div>Loading...</div>}>
             {createElement(lazy(() => import('@/components-frame/useState/index.jsx')))}
@@ -43,6 +44,7 @@ const routeConfig = [
       {
         path: 'useCallback',
         name: 'useCallback',
+        grade: '1',
         element: (
           <Suspense fallback={<div>Loading...</div>}>
             {createElement(lazy(() => import('@/components-frame/useCallback/index.jsx')))}
@@ -52,6 +54,7 @@ const routeConfig = [
       {
         path: 'useContext',
         name: 'useContext',
+        grade: '1',
         element: (
           <Suspense fallback={<div>Loading...</div>}>
             {createElement(lazy(() => import('@/components-frame/useContext/index.jsx')))}
@@ -61,6 +64,7 @@ const routeConfig = [
       {
         path: 'useEffect',
         name: 'useEffect',
+        grade: '1',
         element: (
           <Suspense fallback={<div>Loading...</div>}>
             {createElement(lazy(() => import('@/components-frame/useEffect/index.jsx')))}
@@ -70,6 +74,7 @@ const routeConfig = [
       {
         path: 'useLayoutEffect',
         name: 'useLayoutEffect',
+        grade: '1',
         element: (
           <Suspense fallback={<div>Loading...</div>}>
             {createElement(lazy(() => import('@/components-frame/useLayoutEffect/index.jsx')))}
@@ -79,6 +84,7 @@ const routeConfig = [
       {
         path: 'useMemo',
         name: 'useMemo',
+        grade: '1',
         element: (
           <Suspense fallback={<div>Loading...</div>}>
             {createElement(lazy(() => import('@/components-frame/useMemo/index.jsx')))}
@@ -88,6 +94,7 @@ const routeConfig = [
       {
         path: 'useReducer',
         name: 'useReducer',
+        grade: '1',
         element: (
           <Suspense fallback={<div>Loading...</div>}>
             {createElement(lazy(() => import('@/components-frame/useReducer/index.jsx')))}
@@ -97,6 +104,7 @@ const routeConfig = [
       {
         path: 'useRef',
         name: 'useRef',
+        grade: '1',
         element: (
           <Suspense fallback={<div>Loading...</div>}>
             {createElement(lazy(() => import('@/components-frame/useRef/index.jsx')))}
@@ -106,6 +114,7 @@ const routeConfig = [
       {
         path: 'useImperativeHandle',
         name: 'useImperativeHandle',
+        grade: '2',
         element: (
           <Suspense fallback={<div>Loading...</div>}>
             {createElement(lazy(() => import('@/components-frame/useImperativeHandle/index.jsx')))}
@@ -115,6 +124,7 @@ const routeConfig = [
       {
         path: 'useTransition',
         name: 'useTransition',
+        grade: '1',
         element: (
           <Suspense fallback={<div>Loading...</div>}>
             {createElement(lazy(() => import('@/components-frame/useTransition/index.jsx')))}
@@ -124,6 +134,7 @@ const routeConfig = [
       {
         path: 'saveValue',
         name: '展示更新前后的值',
+        grade: '1',
         element: (
           <Suspense fallback={<div>Loading...</div>}>
             {createElement(lazy(() => import('@/components-frame/saveValue/index.jsx')))}
@@ -133,6 +144,7 @@ const routeConfig = [
       {
         path: 'customHooks',
         name: '自定义Hook',
+        grade: '1',
         element: (
           <Suspense fallback={<div>Loading...</div>}>
             {createElement(lazy(() => import('@/components-frame/customHooks/index.jsx')))}
@@ -142,6 +154,7 @@ const routeConfig = [
       {
         path: 'hoc',
         name: '高阶组件',
+        grade: '1',
         element: (
           <Suspense fallback={<div>Loading...</div>}>
             {createElement(lazy(() => import('@/components-frame/hoc/index.jsx')))}
@@ -151,6 +164,7 @@ const routeConfig = [
       {
         path: 'cacheCom',
         name: '缓存组件',
+        grade: '1',
         element: (
           <Suspense fallback={<div>Loading...</div>}>
             {createElement(lazy(() => import('@/components-frame/cacheCom/index.jsx')))}
@@ -160,6 +174,7 @@ const routeConfig = [
       {
         path: 'devServer',
         name: '配置代理服务器',
+        grade: '1',
         element: (
           <Suspense fallback={<div>Loading...</div>}>
             {createElement(lazy(() => import('@/components-frame/devServer/index.jsx')))}
@@ -167,20 +182,22 @@ const routeConfig = [
         )
       },
       {
-        path: 'reduxPages',
+        path: 'reduxCase',
         name: 'redux初体验',
+        grade: '1',
         element: (
           <Suspense fallback={<div>Loading...</div>}>
-            {createElement(lazy(() => import('@/components-frame/reduxPages/index.jsx')))}
+            {createElement(lazy(() => import('@/components-frame/reduxCase/index.jsx')))}
           </Suspense>
         )
       },
       {
-        path: 'mobxPages',
+        path: 'mobxCase',
         name: 'mobx初体验',
+        grade: '1',
         element: (
           <Suspense fallback={<div>Loading...</div>}>
-            {createElement(lazy(() => import('@/components-frame/mobxPages/index.jsx')))}
+            {createElement(lazy(() => import('@/components-frame/mobxCase/index.jsx')))}
           </Suspense>
         )
       }
@@ -193,45 +210,50 @@ const routeConfig = [
       {
         path: 'page-canvas',
         name: '画布实现',
+        grade: '1',
         element: (
           <Suspense fallback={<div>Loading...</div>}>
-            {createElement(lazy(() => import('@/components-frame/pageCanvas/index.jsx')))}
+            {createElement(lazy(() => import('@/components-style/canvas/index.jsx')))}
           </Suspense>
         )
       },
       {
         path: '3d-animation',
         name: '炫酷3D',
+        grade: '1',
         element: (
           <Suspense fallback={<div>Loading...</div>}>
-            {createElement(lazy(() => import('@/components-frame/page3dAnimation/index.jsx')))}
+            {createElement(lazy(() => import('@/components-style/3dAnimation/index.jsx')))}
           </Suspense>
         )
       },
       {
         path: 'slide',
         name: '滑动切换',
+        grade: '1',
         element: (
           <Suspense fallback={<div>Loading...</div>}>
-            {createElement(lazy(() => import('@/components-frame/slide/index.jsx')))}
+            {createElement(lazy(() => import('@/components-style/slide/index.jsx')))}
           </Suspense>
         )
       },
       {
         path: 'realizeStyle',
         name: '常见的样式实现',
+        grade: '1',
         element: (
           <Suspense fallback={<div>Loading...</div>}>
-            {createElement(lazy(() => import('@/components-frame/realizeStyle/index.jsx')))}
+            {createElement(lazy(() => import('@/components-style/realizeStyle/index.jsx')))}
           </Suspense>
         )
       },
       {
         path: 'refresh',
         name: '刷新',
+        grade: '1',
         element: (
           <Suspense fallback={<div>Loading...</div>}>
-            {createElement(lazy(() => import('@/components-frame/refresh/index.jsx')))}
+            {createElement(lazy(() => import('@/components-style/refresh/index.jsx')))}
           </Suspense>
         )
       }
