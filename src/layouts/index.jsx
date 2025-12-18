@@ -1,18 +1,18 @@
 import React from 'react'
 import { TabBar } from 'antd-mobile'
 import styles from './index.less'
-import Me from '@/views/me/index.jsx'
-import Message from '@/views/message/index.jsx'
-import Home from '@/views/home/index.jsx'
+import Style from '@/views/style/index.jsx'
+import Function from '@/views/function/index.jsx'
+import Frame from '@/views/frame/index.jsx'
 import Todo from '@/views/todo/index.jsx'
-import { useLocation, useNavigate, Outlet } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { AppOutline, MessageOutline, UnorderedListOutline, UserOutline } from 'antd-mobile-icons'
 const tabs = [
   {
-    key: '/home',
-    title: '首页',
+    key: '/frame',
+    title: '框架',
     icon: <AppOutline />,
-    components: <Home />
+    components: <Frame />
   },
   {
     key: '/todo',
@@ -21,15 +21,15 @@ const tabs = [
     icon: <UnorderedListOutline />
   },
   {
-    key: '/message',
-    title: '消息',
-    components: <Message />,
+    key: '/function',
+    title: '功能',
+    components: <Function />,
     icon: <MessageOutline />
   },
   {
-    key: '/me',
-    title: '我的',
-    components: <Me />,
+    key: '/style',
+    title: '样式',
+    components: <Style />,
     icon: <UserOutline />
   }
 ]
