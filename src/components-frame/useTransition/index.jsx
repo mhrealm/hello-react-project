@@ -1,79 +1,20 @@
-
+import React from 'react'
+import ShoppingTrolley from '@/components-frame/useTransition/shopping-trolley.jsx'
+import ListFiltering from '@/components-frame/useTransition/list-filtering.jsx'
+import DataVisualization from '@/components-frame/useTransition/data-visualization.jsx'
 import './index.less'
-import React, { useState, useTransition } from 'react'
-import { updateQuantity } from './mock.js'
+
 const Index = () => {
   return (
-    <div>
-      <div className="useTransition">
-        <ShoppingTrolleyOne />
-        <ShoppingTrolleyTwo />
-      </div>
-    </div>
-  )
-}
+    <div className="useTransition">
+      {/* 场景1: 购物车异步更新 */}
+      <ShoppingTrolley />
 
-// 购物车功能（不使用action）
-const ShoppingTrolleyOne = () => {
-  const [price, setPrice] = useState(1)
-  const [isPending, setIsPending] = useState(false)
-  const changePrice = async ({ target }) => {
-    setIsPending(true)
-    const res = await updateQuantity(target.value)
-    setIsPending(false)
-    setPrice(res)
-  }
-  return (
-    <div className="shoppingTrolley">
-      <div className="title">购物车（不使用action）</div>
-      <div className="price">
-        <span>宝马X5（公路之王）</span>
-        <div>
-          <span>数量：</span>
-          <input type="number" min={1} defaultValue={1} onChange={changePrice} />
-        </div>
-      </div>
-      <hr />
-      <div className="totalPrice">
-        <span>总价：</span>
-        <span>
-          $<span>{isPending ? '🌀 Updating...' : `${price * 20}`}</span>万
-        </span>
-      </div>
-    </div>
-  )
-}
+      {/* 场景2: 大型列表过滤 */}
+      <ListFiltering />
 
-// 购物车功能（使用action）
-const ShoppingTrolleyTwo = () => {
-  const [price, setPrice] = useState(1)
-  const [isPending, startTransition] = useTransition()
-
-  const handleChange = async ({ target }) => {
-    startTransition(async () => {
-      const res = await updateQuantity(target.value)
-      startTransition(async () => {
-        setPrice(res)
-      })
-    })
-  }
-  return (
-    <div className="shoppingTrolley">
-      <div className="title">购物车（使用action）</div>
-      <div className="price">
-        <span>宝马X5（公路之王）</span>
-        <div>
-          <span>数量：</span>
-          <input type="number" min={1} defaultValue={1} onChange={handleChange} />
-        </div>
-      </div>
-      <hr />
-      <div className="totalPrice">
-        <span>总价：</span>
-        <span>
-          $<span>{isPending ? '🌀 Updating...' : `${price * 20}`}</span>万
-        </span>
-      </div>
+      {/* 场景3: 数据可视化的动态更新 */}
+      <DataVisualization />
     </div>
   )
 }

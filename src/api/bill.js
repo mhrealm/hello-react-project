@@ -1,7 +1,7 @@
-import api from '@/utils/request' // 导入我们封装好的 axios 实例
+import api from '@/utils/request'
 
 // 添加账单
-export const addAnBill = (billData) => {
+export const addAnBill = billData => {
   return api.post('/addBill', billData)
 }
 
