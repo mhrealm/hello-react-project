@@ -6,7 +6,7 @@ const isProduction = process.env.NODE_ENV === 'production'
 
 // 2. Base URL 配置 - 根据环境切换
 const baseURLs = {
-  development: 'http://localhost:3001',
+  development: '/', // 使用相对路径，通过代理转发
   production: 'http://api.example.com', // 生产环境API地址
   test: 'http://test-api.example.com' // 测试环境API地址
 }

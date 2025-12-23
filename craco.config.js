@@ -23,17 +23,17 @@ module.exports = {
     hot: true,
     client: {
       overlay: false
-    }
+    },
     // 配置代理解决跨域
-    // proxy: {
-    //   '/': {
-    //     target: process.env.REACT_APP_URL, // https://xxx.com
-    //     changeOrigin: true,
-    //     pathRewrite: {
-    //       '^/': ''
-    //     }
-    //   }
-    // }
+    proxy: {
+      '/': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/': ''
+        }
+      }
+    }
   },
   webpack: {
     alias: {
