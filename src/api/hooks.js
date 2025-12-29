@@ -17,7 +17,6 @@ export const updateQuantity = async value => {
 
 // 获取列表数据
 export const generateMockData = async count => {
-  // 从json-server获取基础数据
   const items = await api.get('/items')
 
   // 如果需要的数量超过现有数据，则复制现有数据

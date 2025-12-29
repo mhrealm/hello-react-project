@@ -24,13 +24,13 @@ module.exports = {
     client: {
       overlay: false
     },
-    // 配置代理解决跨域
+    // 配置代理解决跨域 - 只代理API请求，不代理前端路由
     proxy: {
-      '/': {
+      '/api': {
         target: 'http://localhost:3001',
         changeOrigin: true,
         pathRewrite: {
-          '^/': ''
+          '^/api': ''
         }
       }
     }
