@@ -27,6 +27,21 @@ const routeConfig = [
     path: '/todo',
     element: <MainLayout />
   },
+  {
+    path: 'function',
+    children: [
+      {
+        path: 'imagesLazyLoading',
+        name: 'imagesLazyLoading',
+        grade: '1', // 难度等级
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            {createElement(lazy(() => import('@/components-function/imagesLazyLoading/index.jsx')))}
+          </Suspense>
+        )
+      }
+    ]
+  },
   // "框架"页面子路由
   {
     path: 'frame',

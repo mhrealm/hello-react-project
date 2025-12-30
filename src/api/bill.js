@@ -1,13 +1,13 @@
-import api from '@/utils/request'
+import request from '@/utils/request'
 
 // 添加账单
 export const addAnBill = billData => {
-  return api.post('/addBill', billData)
+  return request.post('/addBill', billData)
 }
 
 // 获取所有账单
 export const getBilllist = () => {
-  return api.get('/getBills')
+  return request.get('/getBills') || []
 }
 
 // 3. （可选）根据 ID 删除账单

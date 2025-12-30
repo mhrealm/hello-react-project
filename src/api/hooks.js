@@ -1,14 +1,14 @@
-import api from '@/utils/request'
+import request from '@/utils/request'
 
 export const getUseTansitionCartItems = () => {
-  return api.get('/cartItems')
+  return request.get('/cartItems')
 }
 
 export const updateQuantity = async value => {
   // 模拟API延迟，保持与原mock一致的2秒延迟
   await new Promise(resolve => setTimeout(resolve, 2000))
 
-  return api
+  return request
     .patch('/cartItems/1', {
       quantity: parseInt(value)
     })
@@ -17,7 +17,7 @@ export const updateQuantity = async value => {
 
 // 获取列表数据
 export const generateMockData = async count => {
-  const items = await api.get('/items')
+  const items = (await request.get('/items')) || []
 
   // 如果需要的数量超过现有数据，则复制现有数据
   if (count > items.length) {

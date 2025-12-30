@@ -2,6 +2,11 @@ const express = require('express')
 const fs = require('fs')
 const path = require('path')
 
+// 导入路由模块
+const cartItemsRouter = require('./routes/cartItems')
+const itemsRouter = require('./routes/items')
+const resourceRouter = require('./routes/resource')
+
 const app = express()
 const PORT = process.env.PORT || 3001
 
@@ -47,121 +52,10 @@ app.use((req, res, next) => {
   next()
 })
 
-// API 端点
-
-// GET /cartItems
-app.get('/cartItems', (req, res) => {
-  res.json(dbData.cartItems)
-})
-
-// GET /cartItems/:id
-app.get('/cartItems/:id', (req, res) => {
-  const id = req.params.id
-  const item = dbData.cartItems.find(item => item.id === id)
-  if (item) {
-    res.json(item)
-  } else {
-    res.status(404).json({ message: 'Item not found' })
-  }
-})
-
-// POST /cartItems
-app.post('/cartItems', (req, res) => {
-  const newItem = {
-    id: Date.now().toString(),
-    ...req.body
-  }
-  dbData.cartItems.push(newItem)
-  saveDatabase()
-  res.status(201).json(newItem)
-})
-
-// PUT /cartItems/:id
-app.put('/cartItems/:id', (req, res) => {
-  const id = req.params.id
-  const index = dbData.cartItems.findIndex(item => item.id === id)
-  if (index !== -1) {
-    dbData.cartItems[index] = {
-      ...dbData.cartItems[index],
-      ...req.body
-    }
-    saveDatabase()
-    res.json(dbData.cartItems[index])
-  } else {
-    res.status(404).json({ message: 'Item not found' })
-  }
-})
-
-// DELETE /cartItems/:id
-app.delete('/cartItems/:id', (req, res) => {
-  const id = req.params.id
-  const initialLength = dbData.cartItems.length
-  dbData.cartItems = dbData.cartItems.filter(item => item.id !== id)
-
-  if (dbData.cartItems.length < initialLength) {
-    saveDatabase()
-    res.status(204).send()
-  } else {
-    res.status(404).json({ message: 'Item not found' })
-  }
-})
-
-// GET /items
-app.get('/items', (req, res) => {
-  res.json(dbData.items)
-})
-
-// GET /items/:id
-app.get('/items/:id', (req, res) => {
-  const id = req.params.id
-  const item = dbData.items.find(item => item.id === id)
-  if (item) {
-    res.json(item)
-  } else {
-    res.status(404).json({ message: 'Item not found' })
-  }
-})
-
-// POST /items
-app.post('/items', (req, res) => {
-  const newItem = {
-    id: Date.now().toString(),
-    ...req.body
-  }
-  dbData.items.push(newItem)
-  saveDatabase()
-  res.status(201).json(newItem)
-})
-
-// PUT /items/:id
-app.put('/items/:id', (req, res) => {
-  const id = req.params.id
-  const index = dbData.items.findIndex(item => item.id === id)
-  if (index !== -1) {
-    dbData.items[index] = {
-      ...dbData.items[index],
-      ...req.body
-    }
-    saveDatabase()
-    res.json(dbData.items[index])
-  } else {
-    res.status(404).json({ message: 'Item not found' })
-  }
-})
-
-// DELETE /items/:id
-app.delete('/items/:id', (req, res) => {
-  const id = req.params.id
-  const initialLength = dbData.items.length
-  dbData.items = dbData.items.filter(item => item.id !== id)
-
-  if (dbData.items.length < initialLength) {
-    saveDatabase()
-    res.status(204).send()
-  } else {
-    res.status(404).json({ message: 'Item not found' })
-  }
-})
+// 注册路由
+app.use('/cartItems', cartItemsRouter(dbData, saveDatabase))
+app.use('/items', itemsRouter(dbData, saveDatabase))
+app.use('/resource', resourceRouter(dbData, saveDatabase))
 
 // 启动服务器
 app.listen(PORT, () => {
@@ -169,4 +63,5 @@ app.listen(PORT, () => {
   console.log('Endpoints:')
   console.log(`http://localhost:${PORT}/cartItems`)
   console.log(`http://localhost:${PORT}/items`)
+  console.log(`http://localhost:${PORT}/resource/imageAddress/:num`)
 })

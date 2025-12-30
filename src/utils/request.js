@@ -14,7 +14,7 @@ const baseURLs = {
 const baseURL = baseURLs[process.env.NODE_ENV] || baseURLs.development
 
 // 3. 创建 axios 实例
-const api = axios.create({
+const request = axios.create({
   baseURL,
   timeout: 15000, // 增加超时时间到15秒
   headers: {
@@ -43,11 +43,16 @@ const cancelPendingRequest = config => {
 }
 
 // 5. 请求拦截器
-api.interceptors.request.use(
+request.interceptors.request.use(
   config => {
+    // 处理params参数，如果是基本类型，则转换为{num: params}的格式
+    if (config.method === 'get' && config.params && typeof config.params !== 'object') {
+      config.url = `${config.url}/${config.params}`
+      config.params = undefined
+    }
+
     // 取消重复请求
     cancelPendingRequest(config)
-
     // 设置请求取消令牌
     const source = axios.CancelToken.source()
     config.cancelToken = source.token
@@ -83,7 +88,7 @@ api.interceptors.request.use(
 )
 
 // 6. 响应拦截器
-api.interceptors.response.use(
+request.interceptors.response.use(
   response => {
     // 移除已完成的请求
     const requestKey = generateRequestKey(response.config)
@@ -198,7 +203,7 @@ api.interceptors.response.use(
 // 7. 请求重试机制 - 可配置重试次数和重试间隔
 const retryRequest = async (config, retryCount = 3, retryDelay = 1000) => {
   try {
-    return await api(config)
+    return await request(config)
   } catch (error) {
     if (retryCount <= 0 || error.code === 'BUSINESS_ERROR') {
       throw error // 达到最大重试次数或业务错误，不再重试
@@ -211,7 +216,7 @@ const retryRequest = async (config, retryCount = 3, retryDelay = 1000) => {
 }
 
 // 8. 扩展 axios 实例，添加重试方法
-api.retry = retryRequest
+request.retry = retryRequest
 
 // 9. 导出封装好的 axios 实例
-export default api
+export default request
