@@ -1,0 +1,58 @@
+.image-lazy-loading-case-1 {
+  overflow: auto;
+  margin: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+
+  .lazy-img-wrapper {
+    position: relative;
+    width: 40rem;
+    height: 40rem;
+    margin: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #dbdada; /* 占位背景色 */
+
+    .lazy-img {
+      width: 100%;
+      object-fit: cover; /* 保持图片比例，填充容器 */
+      opacity: 0; /* 初始透明，加载完成后显示 */
+      transition: opacity 2s ease;
+    }
+
+    .lazy-img.loaded {
+      opacity: 1; /* 加载完成后显示图片 */
+    }
+
+    /* loading 动画样式 */
+    .loading-spinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50%;
+      height: 50%;
+      border: 2px solid transparent;
+      border-color: #1890ff transparent #1890ff #1890ff;
+      border-radius: 50%;
+      animation: spin 3s linear infinite;
+    }
+    @keyframes spin {
+      0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+      100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+  }
+
+  /* 图片加载完成后：给容器加 img-loaded 类，隐藏 loading */
+  .img-loaded {
+    .loading-spinner {
+      opacity: 0;
+      pointer-events: none;
+      animation: none;
+    }
+  }
+}

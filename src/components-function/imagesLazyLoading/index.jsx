@@ -1,4 +1,5 @@
 import Case1 from './case1.jsx'
+import './index.less'
 
 const ImagesLazyLoading = () => {
   return (

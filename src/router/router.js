@@ -37,9 +37,15 @@ const routeConfig = [
     children: [
       {
         path: 'imagesLazyLoading',
-        name: 'imagesLazyLoading',
+        name: '图片懒加载',
         grade: '1', // 难度等级
         element: lazyLoadComponent(() => import('@/components-function/imagesLazyLoading/index.jsx'))
+      },
+      {
+        path: 'loadWithRefresh',
+        name: '上拉加载下拉刷新',
+        grade: '2', // 难度等级
+        element: lazyLoadComponent(() => import('@/components-function/loadWithRefresh/index.jsx'))
       }
     ]
   },
@@ -155,6 +161,12 @@ const routeConfig = [
   {
     path: 'style',
     children: [
+      {
+        path: 'background-shake',
+        name: '背景抖动',
+        grade: '1',
+        element: lazyLoadComponent(() => import('@/components-style/BackgroundShake/index.jsx'))
+      },
       {
         path: 'page-canvas',
         name: '画布实现',
