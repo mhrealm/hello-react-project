@@ -1,0 +1,45 @@
+# EditorConfig helps maintain consistent coding styles for multiple developers working on the same project across various editors and IDEs.
+# EditorConfig file format is documented at https://editorconfig.org
+
+root = true
+
+[*]
+# Set default charset
+charset = utf-8
+
+# Set indentation style to spaces
+indent_style = space
+
+# Set indentation size
+indent_size = 2
+
+# Set line ending
+end_of_line = lf
+
+# Set to true to remove any whitespace characters preceding newline characters
+trim_trailing_whitespace = true
+
+# Set to true to ensure files always end with a newline
+insert_final_newline = true
+
+# Set maximum line length for automatic wrapping
+max_line_length = 100
+
+[*.md]
+# Markdown files can have longer lines
+max_line_length = 120
+# Don't trim trailing whitespace in markdown files
+# (it's sometimes used for line breaks)
+trim_trailing_whitespace = false
+
+[*.json]
+# JSON files often have long lines
+max_line_length = 120
+
+[*.js, *.jsx, *.ts, *.tsx]
+# JavaScript and TypeScript files
+max_line_length = 100
+
+[*.yml, *.yaml]
+# YAML files
+max_line_length = 100

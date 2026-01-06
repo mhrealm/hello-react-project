@@ -1,7 +1,15 @@
 {
-   // ✅ 开启保存时自动格式化
+  // ✅ 开启保存时自动格式化
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
   // ✅ 开启自动修改闭合标签
-  "editor.linkedEditing": true
+  "editor.linkedEditing": true,
+  // ✅ 开启单词换行
+  "editor.wordWrap": "bounded",
+  // ✅ 设置换行宽度
+  "editor.wordWrapColumn": 100,
+  // ✅ 尊重editorconfig中的设置
+  "editor.useEditorConfig": true,
+  // ✅ 格式化时使用editorconfig设置
+  "editor.formatOnType": true
 }
