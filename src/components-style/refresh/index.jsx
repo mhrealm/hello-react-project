@@ -1,57 +1,57 @@
-import React, { useRef, useState } from 'react'
-import './index.less'
+import React, { useRef, useState } from 'react';
+import './index.less';
 
 // 模拟请求
 const fetchData = (index, size) => {
-  console.log('index', index)
-  console.log('size', size)
+  console.log('index', index);
+  console.log('size', size);
   return new Promise((resolve, reject) => {
-    let datas = []
+    let datas = [];
     for (let i = index * size - size; i < index * size; i++) {
       datas.push({
         id: i,
-        content: `${i}我是商品列表元素`
-      })
+        content: `${i}我是商品列表元素`,
+      });
     }
     setTimeout(() => {
       if (datas.length >= 10) {
-        resolve(datas)
+        resolve(datas);
       } else {
-        reject([])
+        reject([]);
       }
-    }, 1000)
-  })
-}
+    }, 1000);
+  });
+};
 
 const Index = () => {
-  const pageSise = 10
-  const pageIndex = useRef(1)
-  const [loading, setLoading] = useState(false)
-  const [items, setItems] = useState([])
+  const pageSise = 10;
+  const pageIndex = useRef(1);
+  const [loading, setLoading] = useState(false);
+  const [items, setItems] = useState([]);
 
   // 初始化页面数据
   let pageInit = async () => {
     try {
-      setLoading(true)
-      let data = await fetchData(pageIndex.current, pageSise)
-      setItems([...items, ...data])
-      console.log('data', data)
+      setLoading(true);
+      let data = await fetchData(pageIndex.current, pageSise);
+      setItems([...items, ...data]);
+      console.log('data', data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   // 实现下拉加载功能
   const handlyScroll = e => {
-    const { scrollTop, scrollHeight, clientHeight } = e.currentTarget
+    const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     if (scrollTop + clientHeight === scrollHeight) {
-      pageIndex.current++
+      pageIndex.current++;
       // console.log('pageIndex', pageIndex.current)
-      pageInit()
+      pageInit();
     }
-  }
+  };
 
   // 实现上拉刷新
 
@@ -70,7 +70,7 @@ const Index = () => {
         {loading && <div className="loading">loadding...</div>}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;

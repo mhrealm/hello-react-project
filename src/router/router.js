@@ -204,6 +204,14 @@ const routeConfig = [
     path: 'style',
     children: [
       {
+        path: 'layouts',
+        name: '布局',
+        grade: '1',
+        element: lazyLoadComponent(
+          () => import('@/components-style/layouts.jsx')
+        ),
+      },
+      {
         path: 'background-shake',
         name: '背景抖动',
         grade: '1',
@@ -212,19 +220,19 @@ const routeConfig = [
         ),
       },
       {
-        path: 'page-canvas',
-        name: '画布实现',
+        path: 'canvas',
+        name: '画布',
         grade: '1',
         element: lazyLoadComponent(
-          () => import('@/components-style/canvas/index.jsx')
+          () => import('@/components-style/canvas.jsx')
         ),
       },
       {
-        path: '3d-animation',
-        name: '炫酷3D',
+        path: 'animation',
+        name: '动画',
         grade: '1',
         element: lazyLoadComponent(
-          () => import('@/components-style/3dAnimation/index.jsx')
+          () => import('@/components-style/animation.jsx')
         ),
       },
       {
@@ -233,14 +241,6 @@ const routeConfig = [
         grade: '1',
         element: lazyLoadComponent(
           () => import('@/components-style/slide/index.jsx')
-        ),
-      },
-      {
-        path: 'realizeStyle',
-        name: '常见的样式实现',
-        grade: '1',
-        element: lazyLoadComponent(
-          () => import('@/components-style/realizeStyle/index.jsx')
         ),
       },
       {
