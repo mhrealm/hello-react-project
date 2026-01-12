@@ -14,6 +14,6 @@ module.exports = {
   extends: ['react-app', 'react-app/jest', 'prettier'],
   rules: {
     'import/prefer-default-export': 'off',
-    'max-len': ['warn', { code: 80 }],
+    'max-len': ['warn', { code: 120 }],
   },
 };

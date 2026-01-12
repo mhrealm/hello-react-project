@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react'
-import './index.less'
+import React, { useEffect, useRef, useState } from 'react';
+import './index.less';
 const Index = () => {
   return (
     <div className="container">
@@ -8,68 +8,68 @@ const Index = () => {
       <BeforeStateUpdate />
       <NeedlessObjectRely />
     </div>
-  )
-}
+  );
+};
 
 const Simulation = () => {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     // 相当于 componentDidMount 中的代码
     // console.log('组件挂载后执行')
-  }, [])
+  }, []);
 
   useEffect(() => {
     // 相当于 componentDidUpdate 中的代码，当 count 变化时执行
     // console.log(`count 更新为: ${count}`)
-  }, [count])
+  }, [count]);
 
   useEffect(() => {
     // 组件挂载或更新时执行的代码
     const timer = setInterval(() => {
       // console.log('每秒执行一次')
-    }, 1000)
+    }, 1000);
 
     // 返回一个清理函数，组件卸载前执行
     return () => {
-      clearInterval(timer)
+      clearInterval(timer);
       // console.log('组件卸载，清除定时器')
-    }
-  }, [])
+    };
+  }, []);
 
   return (
     <div className="box">
       <p>1.useEffect分别模拟了类组件中的哪些生命周期? </p>
       <button onChange={() => setCount(a => a + 1)}>计数器:{count}</button>
     </div>
-  )
-}
+  );
+};
 
 const ConnectionExternal = () => {
   const ModalDialog = ({ isOpen, children }) => {
-    const ref = useRef()
+    const ref = useRef();
     useEffect(() => {
-      const dialog = ref.current
+      const dialog = ref.current;
       if (!isOpen) {
-        return
+        return;
       }
-      dialog.showModal()
+      dialog.showModal();
       return () => {
-        dialog.close()
-      }
-    }, [isOpen])
-    return <dialog ref={ref}>{children}</dialog>
-  }
+        dialog.close();
+      };
+    }, [isOpen]);
+    return <dialog ref={ref}>{children}</dialog>;
+  };
 
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
 
   const openDialog = () => {
-    setShow(true)
-  }
+    setShow(true);
+  };
 
   const onClose = () => {
-    setShow(false)
-  }
+    setShow(false);
+  };
 
   return (
     <div className="box">
@@ -81,11 +81,11 @@ const ConnectionExternal = () => {
         <button onClick={onClose}>Close</button>
       </ModalDialog>
     </div>
-  )
-}
+  );
+};
 
 const BeforeStateUpdate = () => {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
   // 第一种使用count作为副作用的依赖值
   // useEffect(() => {
   // 	const intervalId = setInterval(() => {
@@ -100,51 +100,56 @@ const BeforeStateUpdate = () => {
   // 第二种不使用count作为副作用的依赖值
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setCount(a => a + 1)
-    }, 1000)
+      setCount(a => a + 1);
+    }, 1000);
     return () => {
       // console.log('intervalId', intervalId)
-      clearInterval(intervalId)
-    }
-  }, [])
+      clearInterval(intervalId);
+    };
+  }, []);
 
   return (
     <div className="box">
       <p>3.根据副作用的先前状态更新状态 </p>
       <div>状态：{count}</div>
     </div>
-  )
-}
+  );
+};
 
 const NeedlessObjectRely = () => {
   const [person, setPerson] = useState({
     name: 'zangsan',
-    sex: 'man'
-  })
+    sex: 'man',
+  });
 
   useEffect(() => {
-    // 🙅错误示范： Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    /* 
+    🙅错误示范： Warning: Maximum update depth exceeded. 
+    This can happen when a component calls setState inside useEffect, 
+    but useEffect either doesn't have a dependency array, 
+    or one of the dependencies changes on every render.
+  */
     // setPerson({
     // 	...person,
     // 	name: 'lisi'
     // })
-  }, [person])
+  }, [person]);
 
   // 🙆正确做法
   useEffect(() => {
     setPerson(p => {
       return {
         ...p,
-        name: 'lisi'
-      }
-    })
-  }, [])
+        name: 'lisi',
+      };
+    });
+  }, []);
   return (
     <div className="box">
       <p>4.避免将对象或者函数作为useEffect的依赖项。 </p>
       <div>姓名：{person.name}</div>
     </div>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;

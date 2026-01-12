@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   biggerTitle: '浏览器',
   type: 'javascript',
@@ -27,7 +28,7 @@ export default {
         <input type="text" value="" />
       </form>
               `,
-      difficulty: '★★'
+      difficulty: '★★',
     },
     {
       title: 'http1.0和http2.0有什么区别？',
@@ -36,7 +37,7 @@ export default {
       1、连接方式：HTTP1.0是无状态的，每次请求都需要建立新的连接，这意味着每次请求都需要进行TCP握手，这会导致大量延迟。然而，HTTP2.0支持多路复用，允许在一个TCP连接上并发多个请求或响应，从而显著提高了网络效率和性能。
       2、数据格式：HTTP1.0的数据是文本格式，虽然方便阅读，但不利于传输和解析。相比之下，HTTP2.0的数据是二进制格式，这种格式更有效地减少了数据传输量，并且不易出错，从而提高了数据传输的可靠性。
               `,
-      difficulty: '★★'
+      difficulty: '★★',
     },
     {
       title: '请说明webSocket和Ajax有哪些不同？分别有什么限制？',
@@ -48,7 +49,7 @@ export default {
         3、浏览器兼容性：WebSocket在一些旧版本的浏览器中可能不被支持，而Ajax则具有更广泛的浏览器兼容性。
               `,
 
-      difficulty: '★★'
+      difficulty: '★★',
     },
     {
       title: '谈谈对于ajax的理解？优点及缺点？',
@@ -64,7 +65,7 @@ export default {
          ajax不支持浏览器back按钮。
               `,
 
-      difficulty: '★★'
+      difficulty: '★★',
     },
     {
       title: 'ajax的请求的步骤有那些？',
@@ -90,7 +91,7 @@ export default {
          
               `,
 
-      difficulty: '★★'
+      difficulty: '★★',
     },
     {
       title: 'ajax请求方式post和get的区别？',
@@ -108,7 +109,7 @@ export default {
          从 TCP 的角度，GET 请求会把请求报文一次性发出去，而 POST 会分为两个 TCP 数据包，首先发 header 部分，如果服务器响应 100(continue)， 然后发 body 部分。(火狐浏览器除外，它的 POST 请求只发一个 TCP 包)
               `,
 
-      difficulty: '★★'
+      difficulty: '★★',
     },
     {
       title: 'axios中请求拦截器和响应拦截器可以做什么?',
@@ -127,7 +128,7 @@ export default {
          // 响应拦截器 axios.interceptors.reponse.use(req=>{}, err=>{});
               `,
 
-      difficulty: '★★'
+      difficulty: '★★',
     },
     {
       title: 'Token一般是存放在哪里？',
@@ -138,7 +139,7 @@ export default {
          存储在cookie 中，让它自动发送，不过缺点就是不能跨域。
               `,
 
-      difficulty: '★★'
+      difficulty: '★★',
     },
     {
       title: 'Token请求的流程？',
@@ -150,7 +151,7 @@ export default {
          下次客户端请求需要携带token，如果服务端验证通过，则返回请求内容。
               `,
 
-      difficulty: '★★'
+      difficulty: '★★',
     },
     {
       title: '并发请求，怎么处理，如何控制并发量？',
@@ -160,7 +161,7 @@ export default {
          链接：https://juejin.cn/post/7236634852828217399
               `,
 
-      difficulty: '★★★★★'
+      difficulty: '★★★★★',
     },
     {
       title: '请写出至少 5 种常见的 http  状态码以及代表的意义？',
@@ -174,7 +175,7 @@ export default {
           500（Internal Server Error）：服务器遇到了一个未曾预料的状况，导致了它无法完成对请求的处理。
               `,
 
-      difficulty: '★★'
+      difficulty: '★★',
     },
     {
       title: '你了解多少cookie？',
@@ -218,7 +219,7 @@ export default {
          注意事项：在浏览器打开的时候必须选择 open with Live Server ，选择file路径打开看不见存储的内容（可以实现7天免登陆，但是项目中一般后端解决）
               `,
 
-      difficulty: '★★★'
+      difficulty: '★★★',
     },
     {
       title: '本地存储有哪些？他们有那些区别？',
@@ -258,7 +259,7 @@ export default {
          
               `,
 
-      difficulty: '★★'
+      difficulty: '★★',
     },
     {
       title: '说下浏览器的缓存策略？',
@@ -269,7 +270,7 @@ export default {
          协商缓存：第一次请求返回资源和资源标志，第二次拿资源标志进行请求，如果资源更新则返回新的资源和资源标志，如果资源没有更新则返回304.
               `,
 
-      difficulty: '★★★★'
+      difficulty: '★★★★',
     },
     {
       title: '说下缓存相关具体详细信息？',
@@ -294,7 +295,7 @@ export default {
          详细：https://juejin.cn/post/7061588533214969892#heading-42
               `,
 
-      difficulty: '★★★'
+      difficulty: '★★★',
     },
     {
       title: 'hash路由和history路由的实现原理是？在部署方面有什么区别呢？',
@@ -313,7 +314,7 @@ export default {
       适用场景：一般对于SEO要求不高的后台系统建议使用hash路由，对于SEO相对要求较高，同时体验要求较高的电商系统或者新闻网站可以使用history。
               `,
 
-      difficulty: '★★★'
+      difficulty: '★★★',
     },
     {
       title: '什么是回流与重绘？',
@@ -332,7 +333,7 @@ export default {
          浏览器窗口尺寸改变——resize事件发生时；
               `,
 
-      difficulty: '★★★★★'
-    }
-  ]
-}
+      difficulty: '★★★★★',
+    },
+  ],
+};

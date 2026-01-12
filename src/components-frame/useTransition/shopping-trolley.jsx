@@ -1,6 +1,6 @@
-import './index.less'
-import React, { useState, useTransition, useEffect } from 'react'
-import { getUseTansitionCartItems, updateQuantity } from '@/api/hooks.js'
+import './index.less';
+import React, { useState, useTransition, useEffect } from 'react';
+import { getUseTansitionCartItems, updateQuantity } from '@/api/hooks.js';
 
 const ShoppingTrolley = () => {
   return (
@@ -8,39 +8,37 @@ const ShoppingTrolley = () => {
       <ShoppingTrolleyOne />
       <ShoppingTrolleyTwo />
     </div>
-  )
-}
+  );
+};
 
 // 购物车功能（不使用action）
 const ShoppingTrolleyOne = () => {
-  const [price, setPrice] = useState(1)
-  const [isPending, setIsPending] = useState(false)
-  const [loading, setLoading] = useState(true)
+  const [price, setPrice] = useState(1);
+  const [isPending, setIsPending] = useState(false);
 
   // 初始化获取购物车数据
   const loadCartItems = async () => {
     try {
-      const cartItems = await getUseTansitionCartItems()
+      const cartItems = await getUseTansitionCartItems();
       if (cartItems.length > 0) {
-        setPrice(cartItems[0].quantity)
+        setPrice(cartItems[0].quantity);
       }
     } catch (error) {
-      console.error('Failed to fetch cart items:', error)
+      console.error('Failed to fetch cart items:', error);
     } finally {
-      setLoading(false)
     }
-  }
+  };
 
   useEffect(() => {
-    loadCartItems()
-  }, [])
+    loadCartItems();
+  }, []);
 
   const changePrice = async ({ target }) => {
-    setIsPending(true)
-    const res = await updateQuantity(target.value)
-    setIsPending(false)
-    setPrice(res)
-  }
+    setIsPending(true);
+    const res = await updateQuantity(target.value);
+    setIsPending(false);
+    setPrice(res);
+  };
   return (
     <div className="shoppingTrolley">
       <div className="title">购物车（不使用action）</div>
@@ -48,7 +46,12 @@ const ShoppingTrolleyOne = () => {
         <span>宝马X5（公路之王）</span>
         <div>
           <span>数量：</span>
-          <input type="number" min={1} defaultValue={1} onChange={changePrice} />
+          <input
+            type="number"
+            min={1}
+            defaultValue={1}
+            onChange={changePrice}
+          />
         </div>
       </div>
       <hr />
@@ -59,39 +62,37 @@ const ShoppingTrolleyOne = () => {
         </span>
       </div>
     </div>
-  )
-}
+  );
+};
 
 // 购物车功能（使用action）
 const ShoppingTrolleyTwo = () => {
-  const [price, setPrice] = useState(1)
-  const [isPending, startTransition] = useTransition()
-  const [loading, setLoading] = useState(true)
+  const [price, setPrice] = useState(1);
+  const [isPending, startTransition] = useTransition();
 
   // 初始化获取购物车数据
   useEffect(() => {
     const loadCartItems = async () => {
       try {
-        const cartItems = await getUseTansitionCartItems()
+        const cartItems = await getUseTansitionCartItems();
         if (cartItems.length > 0) {
-          setPrice(cartItems[0].quantity)
+          setPrice(cartItems[0].quantity);
         }
       } catch (error) {
-        console.error('Failed to fetch cart items:', error)
+        console.error('Failed to fetch cart items:', error);
       } finally {
-        setLoading(false)
       }
-    }
+    };
 
-    loadCartItems()
-  }, [])
+    loadCartItems();
+  }, []);
 
   const handleChange = async ({ target }) => {
     startTransition(async () => {
-      const res = await updateQuantity(target.value)
-      setPrice(res)
-    })
-  }
+      const res = await updateQuantity(target.value);
+      setPrice(res);
+    });
+  };
   return (
     <div className="shoppingTrolley">
       <div className="title">购物车（使用action）</div>
@@ -99,7 +100,12 @@ const ShoppingTrolleyTwo = () => {
         <span>宝马X5（公路之王）</span>
         <div>
           <span>数量：</span>
-          <input type="number" min={1} defaultValue={1} onChange={handleChange} />
+          <input
+            type="number"
+            min={1}
+            defaultValue={1}
+            onChange={handleChange}
+          />
         </div>
       </div>
       <hr />
@@ -110,7 +116,7 @@ const ShoppingTrolleyTwo = () => {
         </span>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ShoppingTrolley
+export default ShoppingTrolley;

@@ -1,28 +1,28 @@
 const MyInstanceof = () => {
   function Animal() {}
-  let dog = new Animal()
+  let dog = new Animal();
   function myInstanceof(obj, constructor) {
     // 确保传入的对象和构造函数都是有效的
     if (typeof obj !== 'object' || obj === null) {
-      return false
+      return false;
     }
     if (typeof constructor !== 'function') {
-      throw new TypeError('Second argument must be a constructor')
+      throw new TypeError('Second argument must be a constructor');
     }
     // 获取对象的原型链
-    let proto = obj.__proto__
+    let proto = obj.__proto__;
     // 遍历原型链，直到找到constructor.prototype或达到原型链的末尾
     while (true) {
       if (proto === null) {
         // 原型链结束，没有找到constructor.prototype
-        return false
+        return false;
       }
       if (proto === constructor.prototype) {
         // 找到constructor.prototype
-        return true
+        return true;
       }
       // 继续向上遍历原型链
-      proto = proto.__proto__
+      proto = proto.__proto__;
     }
   }
   // console.group('myInstanceof')
@@ -41,8 +41,8 @@ const MyInstanceof = () => {
   // console.log({} instanceof Animal)
   // console.groupEnd()
 
-  return <div>实现instanceof</div>
-}
+  return <div>实现instanceof</div>;
+};
 
 export default {
   biggerTitle: '基础',
@@ -60,7 +60,7 @@ export default {
       7.在 js 中一般理解就是谁调用这个 this 就指向谁
     `,
 
-      difficulty: '★★'
+      difficulty: '★★',
     },
     {
       title: '字符串转数字的方法？',
@@ -71,7 +71,7 @@ export default {
       第四种：一元加号运算符+：类似于 Number()。
     `,
 
-      difficulty: '★★'
+      difficulty: '★★',
     },
     {
       title: '== 和 === 的区别？',
@@ -84,7 +84,7 @@ export default {
       console.log('' === 0); // 输出 false
     `,
 
-      difficulty: '★★'
+      difficulty: '★★',
     },
     {
       title: 'document.write 和 innerHTMl 的区别？',
@@ -100,7 +100,7 @@ export default {
       div.innerHTML = "<b>哈哈</b>"
     `,
 
-      difficulty: '★★'
+      difficulty: '★★',
     },
     {
       title: '如何获取元素的位置？',
@@ -112,7 +112,7 @@ export default {
       console.log(box.item(0).offsetLeft)
     `,
 
-      difficulty: '★★'
+      difficulty: '★★',
     },
     {
       title: '如何绑定事件，如何解除事件？',
@@ -124,7 +124,7 @@ export default {
       button.removeEventListener('click', handleClick);
     `,
 
-      difficulty: '★★'
+      difficulty: '★★',
     },
     {
       title: 'null 和 undefined 的区别？',
@@ -134,7 +134,7 @@ export default {
       3、使用两个等号比较 null 和 undefined 的时候是相等的，如果使用严格相等去比较是不相等的。 
     `,
 
-      difficulty: '★★'
+      difficulty: '★★',
     },
     {
       title: '什么情况下会返回 undefined？',
@@ -145,7 +145,7 @@ export default {
       第四种：函数没有返回值，或者返回值是空的。
     `,
 
-      difficulty: '★★'
+      difficulty: '★★',
     },
     {
       title: 'js 的数据类型有哪些？如何判断 js 的数据类型？',
@@ -162,7 +162,7 @@ export default {
         3、通用型的数据类型判断方式:object.proptype.toSting.call()。
     `,
 
-      difficulty: '★★'
+      difficulty: '★★',
     },
     {
       title: '如何手动实现 instanceof 方法？',
@@ -175,7 +175,7 @@ export default {
         3.拿到对象的原型链(__proto__),使用while遍历该对象的原型链，直到该对象的原型链和构造函数的显示原型（prototype）相等返回ture，不等则返回false。
     `,
       com: <MyInstanceof />,
-      difficulty: '★★'
+      difficulty: '★★',
     },
     {
       title: '简单介绍下 symbol？',
@@ -195,7 +195,7 @@ export default {
         };
     `,
 
-      difficulty: '★★'
+      difficulty: '★★',
     },
     {
       title: '例举 3 种强制类型转换和 2 种隐式类型转换?',
@@ -204,7 +204,7 @@ export default {
       隐式：== 、console.log()、alert()
     `,
 
-      difficulty: '★★'
+      difficulty: '★★',
     },
     {
       title: 'js 中处理异步的几种方式？',
@@ -227,7 +227,7 @@ export default {
       MutationObserver。
     `,
 
-      difficulty: '★★'
-    }
-  ]
-}
+      difficulty: '★★',
+    },
+  ],
+};
