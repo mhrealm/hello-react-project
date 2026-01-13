@@ -74,6 +74,14 @@
     padding: 0 5px;
     background-color: #f9f9f9;
   }
+
+  /* 4. 多行文本省略 - JavaScript实现（无兼容问题） */
+  .multi-line-js {
+    position: relative;
+    line-height: 1.4em;
+    max-height: 4.2em; /* 3行 * 行高 */
+    overflow: hidden;
+  }
 </style>
 
 <!-- 1. 单行文本省略 -->
@@ -119,3 +127,87 @@
     </p>
   </div>
 </div>
+<!-- 4. 多行文本省略 - JavaScript实现（无兼容问题） -->
+<div class="example">
+  <h2>4. 多行文本省略（JavaScript实现，无兼容问题）</h2>
+  <div class="text-container">
+    <p class="multi-line-js">
+      这是一段很长的文本, 当容器高度不够时,
+      会在末尾显示省略号。这种方法适用于大多数浏览器,
+      但需要手动设置高度。这是一段很长的文本, 当容器高度不够时,
+      会在末尾显示省略号。这种方法适用于大多数浏览器,
+      但需要手动设置高度。这是一段很长的文本, 当容器高度不够时,
+      会在末尾显示省略号。这种方法适用于大多数浏览器, 但需要手动设置高度。
+    </p>
+  </div>
+</div>
+<script>
+  /**
+   * 多行文本省略 - 二分法精准截断函数
+   * @param {HTMLElement} element - 需要截断的文本元素
+   * @param {number} maxLines - 最大显示行数（默认3行）
+   */
+  // JavaScript实现多行文本省略
+  function truncateText(element, maxLines) {
+    // 保存原始文本
+    const originalText = element.textContent;
+
+    // 获取元素的计算样式
+    const style = window.getComputedStyle(element);
+    const lineHeight =
+      parseFloat(style.lineHeight) || parseFloat(style.fontSize) * 1.4;
+    const maxHeight = lineHeight * maxLines;
+
+    // 先恢复原始文本，确保有内容可以测量
+    element.textContent = originalText;
+
+    // 如果内容高度超过最大高度，开始截断
+    if (element.scrollHeight > maxHeight) {
+      // 1. 初始化二分法的边界和最优值
+      let start = 0; // 左边界：最小截取字符数（0个）
+      let end = originalText.length; // 右边界：最大截取字符数（全部文本）
+      let bestFit = 0; // 记录最优的截取位置（初始为0）
+
+      // 2. 二分法循环：只要左边界 ≤ 右边界，就继续查找
+      while (start <= end) {
+        // 3. 计算中间位置：取当前范围的中间值（向下取整）
+        const middle = Math.floor((start + end) / 2);
+
+        // 4. 临时设置文本：截取前middle个字符 + 省略号
+        element.textContent = originalText.substring(0, middle) + '...';
+
+        // 5. 判断当前文本高度是否超限
+        if (element.scrollHeight > maxHeight) {
+          // 5.1 超限：说明middle太大，缩小右边界（找更小的数）
+          end = middle - 1;
+        } else {
+          // 5.2 未超限：记录当前middle为最优值，扩大左边界（找更大的数）
+          bestFit = middle;
+          start = middle + 1;
+        }
+      }
+
+      // 找到合适的截断位置后，添加省略号
+      if (bestFit > 0) {
+        element.textContent = originalText.substring(0, bestFit) + '...';
+      } else {
+        // 如果无法找到合适的位置，至少显示一部分文本
+        element.textContent = originalText.substring(0, 10) + '...';
+      }
+    }
+  }
+
+  // 页面加载完成后执行
+  document.addEventListener('DOMContentLoaded', function () {
+    // 获取所有需要截断的元素
+    const elements = document.querySelectorAll('.multi-line-js');
+
+    // 对每个元素执行截断操作
+    elements.forEach(element => {
+      // 设置最大行数（可以根据需要调整）
+      const maxLines = 3;
+      // 执行截断
+      truncateText(element, maxLines);
+    });
+  });
+</script>
