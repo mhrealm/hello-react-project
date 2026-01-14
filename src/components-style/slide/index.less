@@ -1,28 +1,92 @@
 .slide {
-  .listDelete {
-    // margin: 10px;
-    width: 100vw;
-    .list-item {
-      display: flex;
-      align-items: center;
-      width: 100vw;
-      height: 40px;
-      overflow: hidden;
-      background-color: #fff;
-      transition: transform 0.3s ease;
-    }
-    .content {
-      width: 100vw;
-      // flex: 1;
-      padding: 10px;
-    }
+  width: 100%;
+  height: 100vh;
+  background-color: #f5f5f5;
+  overflow: hidden;
 
-    .delete-btn {
-      width: 60px;
-      height: 100%;
-      background-color: red;
-      color: #fff;
-      border: none;
+  .listDelete {
+    width: 100%;
+
+    .list-item {
+      position: relative;
+      width: 100%;
+      min-height: 70px;
+      background-color: #fff;
+      margin-bottom: 1px;
+      overflow: hidden;
+
+      // 点击效果
+      &:active {
+        background-color: #f0f0f0;
+      }
+
+      .content-wrapper {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        min-height: 70px;
+        background-color: #fff;
+        transition: transform 0.3s ease;
+        position: relative;
+        z-index: 1;
+      }
+
+      .content {
+        flex: 1;
+        padding: 12px 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .message-info {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 4px;
+
+          .name {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+            margin: 0;
+          }
+
+          .time {
+            font-size: 12px;
+            color: #999;
+          }
+        }
+
+        .message {
+          font-size: 14px;
+          color: #666;
+          margin: 0;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+      .delete-btn {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 60px;
+        height: 100%;
+        background-color: #ff4757;
+        color: #fff;
+        border: none;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 0;
+
+        &:active {
+          background-color: #ff3742;
+        }
+      }
     }
   }
 }

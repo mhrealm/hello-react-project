@@ -237,7 +237,7 @@ const routeConfig = [
       },
       {
         path: 'slide',
-        name: '滑动切换',
+        name: '滑动删除列表',
         grade: '1',
         element: lazyLoadComponent(
           () => import('@/components-style/slide/index.jsx')
