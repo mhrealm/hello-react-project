@@ -221,7 +221,7 @@ const routeConfig = [
       },
       {
         path: 'canvas',
-        name: '画布',
+        name: 'canvas',
         grade: '1',
         element: lazyLoadComponent(
           () => import('@/components-style/canvas.jsx')

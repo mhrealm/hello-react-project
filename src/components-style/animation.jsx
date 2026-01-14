@@ -3,7 +3,7 @@ import Headerbox from '@/components/headerbox/index.jsx';
 
 let list = [
   {
-    title: 'canvas绘制基础图形详解',
+    title: '立体相册',
     path: '/animation/photoAlbum.html',
   },
 ];
