@@ -204,6 +204,14 @@ const routeConfig = [
     path: 'style',
     children: [
       {
+        path: 'mix-blend-mode',
+        name: '混合模式',
+        grade: '2',
+        element: lazyLoadComponent(
+          () => import('@/components-style/mixBlendMode/index.jsx')
+        ),
+      },
+      {
         path: 'layouts',
         name: '布局',
         grade: '1',
