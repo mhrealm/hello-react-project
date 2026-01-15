@@ -40,7 +40,15 @@ const routeConfig = [
     path: 'function',
     children: [
       {
-        path: 'imagesLazyLoading',
+        path: 'question-answer-session',
+        name: '复刻网易云营销活动',
+        grade: '1', // 难度等级
+        element: lazyLoadComponent(
+          () => import('@/components-function/questionAnswerSession/index.jsx')
+        ),
+      },
+      {
+        path: 'images-lazy-loading',
         name: '图片懒加载',
         grade: '1', // 难度等级
         element: lazyLoadComponent(
@@ -48,7 +56,7 @@ const routeConfig = [
         ),
       },
       {
-        path: 'loadWithRefresh',
+        path: 'load-with-refresh',
         name: '上拉加载下拉刷新',
         grade: '2', // 难度等级
         element: lazyLoadComponent(
