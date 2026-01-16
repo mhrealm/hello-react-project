@@ -63,13 +63,8 @@ const StepItem = ({ item, index, isActive, onBegin, onAnswer }) => {
   // 图片加载完成后开始动画
   useEffect(() => {
     if (isActive && imageLoaded) {
-      // 图片透明度动画
-      const imageTimer = setTimeout(() => {
-        setImageOpacity(1);
-        imageAnimationDone.current = true;
-      }, 100);
-
-      return () => clearTimeout(imageTimer);
+      setImageOpacity(1);
+      imageAnimationDone.current = true;
     }
   }, [isActive, imageLoaded]);
 
@@ -108,7 +103,7 @@ const StepItem = ({ item, index, isActive, onBegin, onAnswer }) => {
 
   return (
     <div
-      className={`step-content step${index} ${isActive ? 'active' : 'fade-item'}`}
+      className={`step-content step${index} ${isActive ? 'fade-enter-done' : 'fade-item'}`}
     >
       <img
         className="image-bg"
@@ -117,13 +112,7 @@ const StepItem = ({ item, index, isActive, onBegin, onAnswer }) => {
         style={{ opacity: imageOpacity, transition: 'opacity 1s ease' }}
         onLoad={() => setImageLoaded(true)}
       />
-      {index === 0 && (
-        <div
-          onClick={onBegin}
-          className="begin-testing"
-          style={{ opacity: imageOpacity, transition: 'opacity 1s ease' }}
-        ></div>
-      )}
+      {index === 0 && <div onClick={onBegin} className="begin-testing"></div>}
       {!!item.question1 && (
         <img
           onClick={onAnswer}
