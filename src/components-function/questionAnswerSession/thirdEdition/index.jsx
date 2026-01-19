@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import './index.less';
+
 const questionList = [
   {
     imgSrc:
@@ -35,129 +36,158 @@ const questionList = [
   },
 ];
 
-const StepItem = ({ item, index, isActive, onBegin, onAnswer }) => {
-  // 动画状态
-  const [imageOpacity, setImageOpacity] = useState(0);
-  const [question1Opacity, setQuestion1Opacity] = useState(0);
-  const [question2Opacity, setQuestion2Opacity] = useState(0);
-
-  // 图片加载完成标志
+const StepItem = React.memo(({ item, index, isActive, onBegin, onAnswer }) => {
+  // 合并动画状态为一个对象，减少状态更新次数
+  const [animationState, setAnimationState] = useState({
+    imageOpacity: 0,
+    question1Opacity: 0,
+    question2Opacity: 0,
+  });
   const [imageLoaded, setImageLoaded] = useState(false);
+  const imageRef = useRef(null);
 
-  // 动画完成标志
-  const imageAnimationDone = useRef(false);
-  const question1AnimationDone = useRef(false);
-
-  // 当组件变为激活状态时开始动画
+  // 当组件变为激活状态时重置动画状态
   useEffect(() => {
     if (isActive) {
-      // 重置动画状态
-      setImageOpacity(0);
-      setQuestion1Opacity(0);
-      setQuestion2Opacity(0);
-      imageAnimationDone.current = false;
-      question1AnimationDone.current = false;
+      setAnimationState({
+        imageOpacity: 0,
+        question1Opacity: 0,
+        question2Opacity: 0,
+      });
+      setImageLoaded(false);
     }
   }, [isActive]);
 
+  // 检查图片是否已经加载完成（处理缓存情况）
   useEffect(() => {
-    let question1Timer = null;
-    let question2Timer = null;
+    if (isActive && imageRef.current) {
+      // 如果图片已经加载完成（从缓存中），立即设置加载状态
+      if (imageRef.current.complete && imageRef.current.naturalHeight !== 0) {
+        setImageLoaded(true);
+      }
+    }
+  }, [isActive]);
 
-    // 如果状态未激活或者图片没有加载完成直接终止
+  // 处理动画序列
+  useEffect(() => {
     if (!isActive || !imageLoaded) return;
 
-    const runImageAnimation = () => {
-      setImageOpacity(1);
-      imageAnimationDone.current = true;
-    };
+    const timers = [];
 
-    const runQuestion1Animation = () => {
-      question1Timer = setTimeout(() => {
-        if (!item.question1) return; // 无question1 → 终止
-        setQuestion1Opacity(1);
-        question1AnimationDone.current = true;
-        runQuestion2Animation(); // 执行完question1，再执行question2
+    // 立即显示图片
+    setAnimationState(prev => ({ ...prev, imageOpacity: 1 }));
+
+    // 延迟显示 question1
+    if (item.question1) {
+      const question1Timer = setTimeout(() => {
+        setAnimationState(prev => ({ ...prev, question1Opacity: 1 }));
+
+        // question1 显示后，延迟显示 question2
+        if (item.question2) {
+          const question2Timer = setTimeout(() => {
+            setAnimationState(prev => ({ ...prev, question2Opacity: 1 }));
+          }, 500);
+          timers.push(question2Timer);
+        }
       }, 500);
-    };
-
-    const runQuestion2Animation = () => {
-      if (!item.question2) return; // 无question2 → 终止
-      question2Timer = setTimeout(() => {
-        setQuestion2Opacity(1);
-      }, 500);
-    };
-
-    // 执行图片动画
-    runImageAnimation();
-    // 执行问题1动画
-    runQuestion1Animation();
+      timers.push(question1Timer);
+    }
 
     return () => {
-      clearTimeout(question1Timer);
-      clearTimeout(question2Timer);
+      timers.forEach(timer => clearTimeout(timer));
     };
   }, [isActive, imageLoaded, item.question1, item.question2]);
 
+  const handleImageLoad = useCallback(() => {
+    setImageLoaded(true);
+  }, []);
+
+  const stepClassName = useMemo(
+    () => `step-content step${index} ${isActive ? 'fade-enter-done' : 'fade-item'}`,
+    [index, isActive]
+  );
+
   return (
-    <div
-      className={`step-content step${index} ${isActive ? 'fade-enter-done' : 'fade-item'}`}
-    >
+    <div className={stepClassName}>
       <img
+        ref={imageRef}
         className="image-bg"
         src={item.imgSrc}
         alt=""
-        style={{ opacity: imageOpacity }}
-        onLoad={() => setImageLoaded(true)}
+        style={{ opacity: animationState.imageOpacity }}
+        onLoad={handleImageLoad}
       />
-      {index === 0 && <div onClick={onBegin} className="begin-testing"></div>}
-      {!!item.question1 && (
+      {index === 0 && <div onClick={onBegin} className="begin-testing" />}
+      {item.question1 && (
         <img
           onClick={onAnswer}
           className="question question1"
           src={item.question1}
           alt=""
-          style={{ opacity: question1Opacity }}
+          style={{ opacity: animationState.question1Opacity }}
         />
       )}
-      {!!item.question2 && (
+      {item.question2 && (
         <img
           onClick={onAnswer}
           className="question question2"
           src={item.question2}
           alt=""
-          style={{ opacity: question2Opacity }}
+          style={{ opacity: animationState.question2Opacity }}
         />
       )}
     </div>
   );
-};
+});
+
+StepItem.displayName = 'StepItem';
 
 const Index = () => {
   const [currentStep, setCurrentStep] = useState(0);
+  // 记录已渲染过的组件索引，避免卸载后重新渲染时丢失状态
+  const [renderedSteps, setRenderedSteps] = useState(new Set([0]));
 
-  const handleBeginTesting = () => {
+  const handleBeginTesting = useCallback(() => {
     setCurrentStep(1);
-  };
+  }, []);
 
-  const handleAnsweringQuestion = () => {
-    setCurrentStep(a => a + 1);
-  };
+  const handleAnsweringQuestion = useCallback(() => {
+    setCurrentStep(prev => prev + 1);
+  }, []);
+
+  // 当步骤改变时，将当前步骤和下一个步骤标记为需要渲染
+  useEffect(() => {
+    setRenderedSteps(prev => {
+      const newSet = new Set(prev);
+      // 添加当前步骤
+      newSet.add(currentStep);
+      // 预加载下一个步骤（如果存在）
+      if (currentStep + 1 < questionList.length) {
+        newSet.add(currentStep + 1);
+      }
+      return newSet;
+    });
+  }, [currentStep]);
+
+  // 计算需要渲染的组件列表（只渲染已访问过的步骤和下一个步骤）
+  const renderedItems = useMemo(() => {
+    return questionList
+      .map((item, index) => ({ item, index }))
+      .filter(({ index }) => renderedSteps.has(index));
+  }, [renderedSteps]);
 
   return (
-    <div className="second-edition-container">
-      {questionList.map((item, index) => {
-        return (
-          <StepItem
-            key={index}
-            item={item}
-            index={index}
-            isActive={currentStep === index}
-            onBegin={handleBeginTesting}
-            onAnswer={handleAnsweringQuestion}
-          />
-        );
-      })}
+    <div className="third-edition-container">
+      {renderedItems.map(({ item, index }) => (
+        <StepItem
+          key={index}
+          item={item}
+          index={index}
+          isActive={currentStep === index}
+          onBegin={handleBeginTesting}
+          onAnswer={handleAnsweringQuestion}
+        />
+      ))}
     </div>
   );
 };
