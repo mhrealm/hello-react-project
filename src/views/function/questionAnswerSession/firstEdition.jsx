@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './index.less';
 const questionList = [
   {
     imgSrc:

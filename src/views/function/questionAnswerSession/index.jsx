@@ -1,7 +1,7 @@
 import React from 'react';
-import FirstEdition from './firstEdition/index.jsx';
-import SecondEdition from './secondEdition/index.jsx';
-import ThirdEition from './thirdEdition/index.jsx';
+import FirstEdition from './firstEdition.jsx';
+import SecondEdition from './secondEdition.jsx';
+import ThirdEition from './thirdEdition.jsx';
 
 const Index = () => {
   return (
