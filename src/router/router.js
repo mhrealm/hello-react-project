@@ -52,7 +52,7 @@ const routeConfig = [
         name: '图片懒加载',
         grade: '1', // 难度等级
         element: lazyLoadComponent(
-          () => import('@/components-function/imagesLazyLoading/index.jsx')
+          () => import('@/components/imagesLazyLoading/index.jsx')
         ),
       },
       {
@@ -60,7 +60,7 @@ const routeConfig = [
         name: '上拉加载下拉刷新',
         grade: '2', // 难度等级
         element: lazyLoadComponent(
-          () => import('@/components-function/loadWithRefresh/index.jsx')
+          () => import('@/components/loadWithRefresh/index.jsx')
         ),
       },
     ],
@@ -216,47 +216,41 @@ const routeConfig = [
         name: '混合模式',
         grade: '2',
         element: lazyLoadComponent(
-          () => import('@/components-style/mixBlendMode/index.jsx')
+          () => import('@/components/mixBlendMode/index.jsx')
         ),
       },
       {
         path: 'layouts',
         name: '布局',
         grade: '1',
-        element: lazyLoadComponent(
-          () => import('@/components-style/layouts.jsx')
-        ),
+        element: lazyLoadComponent(() => import('@/components/layouts.jsx')),
       },
       {
         path: 'background-shake',
         name: '背景抖动',
         grade: '1',
         element: lazyLoadComponent(
-          () => import('@/components-style/BackgroundShake/index.jsx')
+          () => import('@/components/backgroundShake/index.jsx')
         ),
       },
       {
         path: 'canvas',
         name: 'canvas',
         grade: '1',
-        element: lazyLoadComponent(
-          () => import('@/components-style/canvas.jsx')
-        ),
+        element: lazyLoadComponent(() => import('@/components/canvas.jsx')),
       },
       {
         path: 'animation',
         name: '动画',
         grade: '1',
-        element: lazyLoadComponent(
-          () => import('@/components-style/animation.jsx')
-        ),
+        element: lazyLoadComponent(() => import('@/components/animation.jsx')),
       },
       {
         path: 'slide',
         name: '滑动删除列表',
         grade: '1',
         element: lazyLoadComponent(
-          () => import('@/components-style/slide/index.jsx')
+          () => import('@/components/slide/index.jsx')
         ),
       },
       {
@@ -264,7 +258,7 @@ const routeConfig = [
         name: '刷新',
         grade: '1',
         element: lazyLoadComponent(
-          () => import('@/components-style/refresh/index.jsx')
+          () => import('@/components/refresh/index.jsx')
         ),
       },
     ],
