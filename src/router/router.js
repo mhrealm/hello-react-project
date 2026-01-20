@@ -25,7 +25,7 @@ const routeConfig = [
     element: <MainLayout />,
   },
   {
-    path: '/style',
+    path: '/animation',
     element: <MainLayout />,
   },
   {
@@ -44,7 +44,7 @@ const routeConfig = [
         name: '复刻网易云营销活动',
         grade: '1', // 难度等级
         element: lazyLoadComponent(
-          () => import('@/components-function/questionAnswerSession/index.jsx')
+          () => import('@/views/function/questionAnswerSession/index.jsx')
         ),
       },
       {
@@ -52,7 +52,7 @@ const routeConfig = [
         name: '图片懒加载',
         grade: '1', // 难度等级
         element: lazyLoadComponent(
-          () => import('@/components/imagesLazyLoading/index.jsx')
+          () => import('@/views/function/imagesLazyLoading/index.jsx')
         ),
       },
       {
@@ -60,7 +60,7 @@ const routeConfig = [
         name: '上拉加载下拉刷新',
         grade: '2', // 难度等级
         element: lazyLoadComponent(
-          () => import('@/components/loadWithRefresh/index.jsx')
+          () => import('@/views/function/loadWithRefresh/index.jsx')
         ),
       },
     ],
@@ -74,7 +74,7 @@ const routeConfig = [
         name: 'useState',
         grade: '1', // 难度等级
         element: lazyLoadComponent(
-          () => import('@/components-frame/useState/index.jsx')
+          () => import('@/views/frame/useState/index.jsx')
         ),
       },
       {
@@ -82,7 +82,7 @@ const routeConfig = [
         name: 'useCallback',
         grade: '1',
         element: lazyLoadComponent(
-          () => import('@/components-frame/useCallback/index.jsx')
+          () => import('@/views/frame/useCallback/index.jsx')
         ),
       },
       {
@@ -90,7 +90,7 @@ const routeConfig = [
         name: 'useContext',
         grade: '1',
         element: lazyLoadComponent(
-          () => import('@/components-frame/useContext/index.jsx')
+          () => import('@/views/frame/useContext/index.jsx')
         ),
       },
       {
@@ -98,7 +98,7 @@ const routeConfig = [
         name: 'useEffect',
         grade: '1',
         element: lazyLoadComponent(
-          () => import('@/components-frame/useEffect/index.jsx')
+          () => import('@/views/frame/useEffect/index.jsx')
         ),
       },
       {
@@ -106,7 +106,7 @@ const routeConfig = [
         name: 'useLayoutEffect',
         grade: '1',
         element: lazyLoadComponent(
-          () => import('@/components-frame/useLayoutEffect/index.jsx')
+          () => import('@/views/frame/useLayoutEffect/index.jsx')
         ),
       },
       {
@@ -114,7 +114,7 @@ const routeConfig = [
         name: 'useMemo',
         grade: '1',
         element: lazyLoadComponent(
-          () => import('@/components-frame/useMemo/index.jsx')
+          () => import('@/views/frame/useMemo/index.jsx')
         ),
       },
       {
@@ -122,7 +122,7 @@ const routeConfig = [
         name: 'useReducer',
         grade: '1',
         element: lazyLoadComponent(
-          () => import('@/components-frame/useReducer/index.jsx')
+          () => import('@/views/frame/useReducer/index.jsx')
         ),
       },
       {
@@ -130,7 +130,7 @@ const routeConfig = [
         name: 'useRef',
         grade: '1',
         element: lazyLoadComponent(
-          () => import('@/components-frame/useRef/index.jsx')
+          () => import('@/views/frame/useRef/index.jsx')
         ),
       },
       {
@@ -138,7 +138,7 @@ const routeConfig = [
         name: 'useImperativeHandle',
         grade: '2',
         element: lazyLoadComponent(
-          () => import('@/components-frame/useImperativeHandle/index.jsx')
+          () => import('@/views/frame/useImperativeHandle/index.jsx')
         ),
       },
       {
@@ -146,7 +146,7 @@ const routeConfig = [
         name: 'useTransition',
         grade: '1',
         element: lazyLoadComponent(
-          () => import('@/components-frame/useTransition/index.jsx')
+          () => import('@/views/frame/useTransition/index.jsx')
         ),
       },
       {
@@ -154,7 +154,7 @@ const routeConfig = [
         name: '展示更新前后的值',
         grade: '1',
         element: lazyLoadComponent(
-          () => import('@/components-frame/saveValue/index.jsx')
+          () => import('@/views/frame/saveValue/index.jsx')
         ),
       },
       {
@@ -162,23 +162,21 @@ const routeConfig = [
         name: '自定义Hook',
         grade: '1',
         element: lazyLoadComponent(
-          () => import('@/components-frame/customHooks/index.jsx')
+          () => import('@/views/frame/customHooks/index.jsx')
         ),
       },
       {
         path: 'hoc',
         name: '高阶组件',
         grade: '1',
-        element: lazyLoadComponent(
-          () => import('@/components-frame/hoc/index.jsx')
-        ),
+        element: lazyLoadComponent(() => import('@/views/frame/hoc/index.jsx')),
       },
       {
         path: 'cacheCom',
         name: '缓存组件',
         grade: '1',
         element: lazyLoadComponent(
-          () => import('@/components-frame/cacheCom/index.jsx')
+          () => import('@/views/frame/cacheCom/index.jsx')
         ),
       },
       {
@@ -186,7 +184,7 @@ const routeConfig = [
         name: '配置代理服务器',
         grade: '1',
         element: lazyLoadComponent(
-          () => import('@/components-frame/devServer/index.jsx')
+          () => import('@/views/frame/devServer/index.jsx')
         ),
       },
       {
@@ -194,7 +192,7 @@ const routeConfig = [
         name: 'redux初体验',
         grade: '1',
         element: lazyLoadComponent(
-          () => import('@/components-frame/reduxCase/index.jsx')
+          () => import('@/views/frame/reduxCase/index.jsx')
         ),
       },
       {
@@ -202,55 +200,61 @@ const routeConfig = [
         name: 'mobx初体验',
         grade: '1',
         element: lazyLoadComponent(
-          () => import('@/components-frame/mobxCase/index.jsx')
+          () => import('@/views/frame/mobxCase/index.jsx')
         ),
       },
     ],
   },
   // "样式"页面子路由
   {
-    path: 'style',
+    path: 'animation',
     children: [
       {
         path: 'mix-blend-mode',
         name: '混合模式',
         grade: '2',
         element: lazyLoadComponent(
-          () => import('@/components/mixBlendMode/index.jsx')
+          () => import('@/views/animation/mixBlendMode/index.jsx')
         ),
       },
       {
         path: 'layouts',
         name: '布局',
         grade: '1',
-        element: lazyLoadComponent(() => import('@/components/layouts.jsx')),
+        element: lazyLoadComponent(
+          () => import('@/views/animation/layouts.jsx')
+        ),
       },
       {
         path: 'background-shake',
         name: '背景抖动',
         grade: '1',
         element: lazyLoadComponent(
-          () => import('@/components/backgroundShake/index.jsx')
+          () => import('@/views/animation/backgroundShake/index.jsx')
         ),
       },
       {
         path: 'canvas',
         name: 'canvas',
         grade: '1',
-        element: lazyLoadComponent(() => import('@/components/canvas.jsx')),
+        element: lazyLoadComponent(
+          () => import('@/views/animation/canvas.jsx')
+        ),
       },
       {
         path: 'animation',
         name: '动画',
         grade: '1',
-        element: lazyLoadComponent(() => import('@/components/animation.jsx')),
+        element: lazyLoadComponent(
+          () => import('@/views/animation/animation.jsx')
+        ),
       },
       {
         path: 'slide',
         name: '滑动删除列表',
         grade: '1',
         element: lazyLoadComponent(
-          () => import('@/components/slide/index.jsx')
+          () => import('@/views/animation/slide/index.jsx')
         ),
       },
       {
@@ -258,7 +262,7 @@ const routeConfig = [
         name: '刷新',
         grade: '1',
         element: lazyLoadComponent(
-          () => import('@/components/refresh/index.jsx')
+          () => import('@/views/animation/refresh/index.jsx')
         ),
       },
     ],

@@ -1,10 +1,10 @@
 import React from 'react';
 import { TabBar } from 'antd-mobile';
 import styles from './index.less';
-import Style from '@/views/style.jsx';
-import Function from '@/views/function.jsx';
-import Frame from '@/views/frame.jsx';
-import Todo from '@/views/todo.jsx';
+import Style from '@/views/animation/index.jsx';
+import Function from '@/views/function/index.jsx';
+import Frame from '@/views/frame/index.jsx';
+import Todo from '@/views/todo/index.jsx';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   AppOutline,
