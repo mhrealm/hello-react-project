@@ -163,7 +163,7 @@ const Index = () => {
   }, [currentStep]);
 
   return (
-    <div className="third-edition-container">
+    <div className="version version3">
       {renderedItems.map(({ item, index }) => (
         <StepItem
           key={index}

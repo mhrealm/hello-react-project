@@ -144,7 +144,7 @@ const Index = () => {
   };
 
   return (
-    <div className="second-edition-container">
+    <div className="version version2">
       {questionList.map((item, index) => {
         return (
           <StepItem

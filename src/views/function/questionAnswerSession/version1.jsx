@@ -46,7 +46,7 @@ const Index = () => {
   };
 
   return (
-    <div className="first-edition-container">
+    <div className="version version1">
       {questionList.map((item, index) => {
         return (
           <div
