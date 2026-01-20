@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+  useRef,
+} from 'react';
 import './index.less';
 
 const questionList = [
@@ -56,10 +62,7 @@ const StepItem = React.memo(({ item, index, isActive, onBegin, onAnswer }) => {
       });
       setImageLoaded(false);
     }
-  }, [isActive]);
-
-  // 检查图片是否已经加载完成（处理缓存情况）
-  useEffect(() => {
+    // 检查图片是否已经加载完成（处理缓存情况）
     if (isActive && imageRef.current) {
       // 如果图片已经加载完成（从缓存中），立即设置加载状态
       if (imageRef.current.complete && imageRef.current.naturalHeight !== 0) {
@@ -103,7 +106,8 @@ const StepItem = React.memo(({ item, index, isActive, onBegin, onAnswer }) => {
   }, []);
 
   const stepClassName = useMemo(
-    () => `step-content step${index} ${isActive ? 'fade-enter-done' : 'fade-item'}`,
+    () =>
+      `step-content step${index} ${isActive ? 'fade-enter-done' : 'fade-item'}`,
     [index, isActive]
   );
 
@@ -144,9 +148,6 @@ StepItem.displayName = 'StepItem';
 
 const Index = () => {
   const [currentStep, setCurrentStep] = useState(0);
-  // 记录已渲染过的组件索引，避免卸载后重新渲染时丢失状态
-  const [renderedSteps, setRenderedSteps] = useState(new Set([0]));
-
   const handleBeginTesting = useCallback(() => {
     setCurrentStep(1);
   }, []);
@@ -155,26 +156,11 @@ const Index = () => {
     setCurrentStep(prev => prev + 1);
   }, []);
 
-  // 当步骤改变时，将当前步骤和下一个步骤标记为需要渲染
-  useEffect(() => {
-    setRenderedSteps(prev => {
-      const newSet = new Set(prev);
-      // 添加当前步骤
-      newSet.add(currentStep);
-      // 预加载下一个步骤（如果存在）
-      if (currentStep + 1 < questionList.length) {
-        newSet.add(currentStep + 1);
-      }
-      return newSet;
-    });
-  }, [currentStep]);
-
-  // 计算需要渲染的组件列表（只渲染已访问过的步骤和下一个步骤）
   const renderedItems = useMemo(() => {
     return questionList
       .map((item, index) => ({ item, index }))
-      .filter(({ index }) => renderedSteps.has(index));
-  }, [renderedSteps]);
+      .filter(({ index }) => index <= currentStep + 1);
+  }, [currentStep]);
 
   return (
     <div className="third-edition-container">

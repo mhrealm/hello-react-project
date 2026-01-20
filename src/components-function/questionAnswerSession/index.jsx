@@ -6,9 +6,9 @@ import ThirdEition from './thirdEdition/index.jsx';
 const Index = () => {
   return (
     <>
-      {/* <FirstEdition /> */}
+      <FirstEdition />
       {/* <SecondEdition /> */}
-      <ThirdEition />
+      {/* <ThirdEition /> */}
     </>
   );
 };
