@@ -60,7 +60,7 @@ const routeConfig = [
         name: '上拉加载下拉刷新',
         grade: '2', // 难度等级
         element: lazyLoadComponent(
-          () => import('@/views/function/loadWithRefresh/index.jsx')
+          () => import('@/views/function/loadAndRefresh/index.jsx')
         ),
       },
     ],
