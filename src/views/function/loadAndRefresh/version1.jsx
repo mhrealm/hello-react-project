@@ -71,6 +71,7 @@ const LoadWithRefresh = () => {
     if (!el) return;
 
     const handleScroll = () => {
+      console.log(99999);
       const { scrollTop, scrollHeight, clientHeight } = el;
       // 距离底部 100px 触发，增加灵敏度
       if (scrollTop + clientHeight >= scrollHeight - 100) {
@@ -124,7 +125,7 @@ const LoadWithRefresh = () => {
       <ul>
         {list.map((item, index) => (
           <li key={index}>
-            <img src={item.url} alt="" />
+            <img src={item.url} alt="robot" />
             <div>
               <p className="title">{item.title}</p>
               <p className="desc">{item.desc}</p>

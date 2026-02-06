@@ -1,7 +1,7 @@
-import React from 'react'
-import './index.less'
-import Counter from './counter.jsx'
-import TodoList from './todoList.jsx'
+import React from 'react';
+import './index.less';
+import Counter from './counter.jsx';
+import TodoList from './todoList.jsx';
 
 const Index = () => {
   return (
@@ -9,7 +9,7 @@ const Index = () => {
       <Counter />
       <TodoList />
     </div>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;
