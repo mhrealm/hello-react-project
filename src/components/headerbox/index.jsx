@@ -1,13 +1,3 @@
-/**
-封装的组件属性说明：
-children：标题
-back：返回区域的文字；
-backIcon：是否显示返回区域的箭头；默认显示
-onBack：点击返回区域后的回调
-rightIcon：右侧图标，支持自定义
-htmlList：跳转到html页面
-*/
-
 import React, { useState } from 'react';
 import './index.less';
 import {
@@ -19,15 +9,16 @@ import {
 import { useNavigate } from 'react-router';
 
 const Headerbox = ({
-  children,
-  back,
-  backIcon,
-  onBack,
-  rightIcon,
-  htmlList,
+  children, // 标题;
+  back, // 返回区域的文字；
+  backIcon, // 是否显示返回区域的箭头；默认显示
+  onBack, // 点击返回区域后的回调
+  rightIcon, // 右侧图标，支持自定义
+  htmlList, // 跳转到html页面
+  showList = true, // 默认显示html列表
 }) => {
   const navigate = useNavigate();
-  const [isSpreadList, setIsSpreadList] = useState(true);
+  const [isShowList, setIsShowList] = useState(showList);
   const toBack = () => {
     if (onBack) {
       onBack();
@@ -52,18 +43,18 @@ const Headerbox = ({
           {Array.isArray(htmlList) && (
             <ul>
               <li className="header-icon">
-                {!isSpreadList && (
+                {!isShowList && (
                   <AppstoreOutline
                     fontSize={20}
-                    onClick={() => setIsSpreadList(true)}
+                    onClick={() => setIsShowList(true)}
                   />
                 )}
               </li>
               <li className="header-icon">
-                {isSpreadList && (
+                {isShowList && (
                   <CloseOutline
                     fontSize={20}
-                    onClick={() => setIsSpreadList(false)}
+                    onClick={() => setIsShowList(false)}
                   />
                 )}
               </li>
@@ -72,9 +63,7 @@ const Headerbox = ({
         </div>
       </div>
       {Array.isArray(htmlList) && (
-        <ul
-          className={`html-list ${isSpreadList ? 'unfold-list' : 'hide-list'}`}
-        >
+        <ul className={`html-list ${isShowList ? 'unfold-list' : 'hide-list'}`}>
           {htmlList?.map(item => {
             return (
               <li
