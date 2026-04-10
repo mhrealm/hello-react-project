@@ -1,9 +1,11 @@
 import { Suspense } from 'react';
 import { useRoutes, BrowserRouter as Router } from 'react-router-dom';
 import routes from '~react-pages'; // 插件生成的虚拟模块
+import Layout from './layouts';
 
 function AppRoutes() {
-  return useRoutes(routes);
+  const routesWithLayout = useRoutes(routes);
+  return <Layout>{routesWithLayout}</Layout>;
 }
 
 const App = () => {
