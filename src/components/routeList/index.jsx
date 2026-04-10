@@ -1,9 +1,11 @@
 import React from 'react';
 import './index.less';
-import router from '@/router/router.js';
+import router from '@/router/index.jsx';
 import { useNavigate } from 'react-router-dom';
 
 const RouteList = ({ path }) => {
+  console.log(999, path);
+
   // 根据路径查找对应的子路由
   let list = router.routes.find(
     i => i.path === path && i.children?.length > 0
