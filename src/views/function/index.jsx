@@ -1,8 +1,7 @@
 import React from 'react';
-import RouteList from '@/components/routeList/index.jsx';
 
 const Function = () => {
-  return <RouteList path="function" />;
+  return <div>222</div>;
 };
 
 export default Function;
