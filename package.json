@@ -2,6 +2,10 @@
   "name": "hello-react",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "npm": "please-use-pnpm",
+    "pnpm": ">=9.0.0"
+  },
   "dependencies": {
     "@ant-design/charts": "^2.2.7",
     "@reduxjs/toolkit": "^2.5.1",
@@ -22,11 +26,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "preinstall": "only-allow pnpm",
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "dev": "concurrently \"npm run start:frontend\" \"npm run server\"",
+    "dev": "concurrently \"pnpm run start:frontend\" \"pnpm run server\"",
     "start:frontend": "craco start --no-open",
     "server": "node server/index.js"
   },
@@ -58,6 +63,7 @@
     "express": "^5.2.1",
     "less": "^4.2.0",
     "less-loader": "^12.2.0",
+    "only-allow": "^1.2.2",
     "prettier": "^3.7.4"
   }
 }

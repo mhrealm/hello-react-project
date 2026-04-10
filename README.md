@@ -18,18 +18,18 @@
 ### 环境要求
 
 - Node.js >= 14.x
-- npm >= 6.x
+- pnpm >= 6.x
 
 ### 安装依赖
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### 启动开发服务器
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 应用将在 `http://localhost:3000` 启动。
@@ -37,7 +37,7 @@ npm run dev
 ### 构建生产版本
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 构建产物将生成在 `build` 目录中。
@@ -45,7 +45,7 @@ npm run build
 ### 运行测试
 
 ```bash
-npm test
+pnpm test
 ```
 
 ## 项目结构
