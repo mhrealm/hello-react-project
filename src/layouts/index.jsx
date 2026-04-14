@@ -1,29 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './index.less';
 
 const Layout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  // 用于记录哪些含有子菜单的项是展开状态
+  const [menuItems, setMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [openSubMenus, setOpenSubMenus] = useState({});
   const location = useLocation();
 
-  const menuItems = [
-    { path: '/', label: '首页' },
-    {
-      path: '/animation',
-      label: '动画',
-      children: [
-        {
-          path: '/animation/mix-blend-mode',
-          label: '混合模式',
-        },
-      ],
-    },
-    { path: '/frame', label: '框架' },
-    { path: '/function', label: '功能' },
-    { path: '/todo', label: '待办事项' },
-  ];
+  useEffect(() => {
+    fetch('http://localhost:5000/menus')
+      .then(res => res.json())
+      .then(data => {
+        setMenuItems(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        setLoading(false);
+        console.error('加载菜单失败:', err);
+      });
+  }, []);
 
   // 切换子菜单展开/收起
   const toggleSubMenu = label => {
@@ -32,6 +29,10 @@ const Layout = ({ children }) => {
       [label]: !prev[label],
     }));
   };
+
+  if (loading) {
+    return <div className="loading-spinner">加载中...</div>;
+  }
 
   // 渲染菜单逻辑
   const renderMenuItems = items => {
