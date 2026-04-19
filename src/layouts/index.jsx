@@ -10,15 +10,18 @@ const Layout = ({ children }) => {
   const location = useLocation();
 
   useEffect(() => {
-    fetch('http://localhost:5000/menus')
+    fetch('/api/menus')
       .then(res => res.json())
-      .then(data => {
+      .then(res => {
+        // 处理统一响应格式 { code, data, message } 或直接是数组
+        const data = Array.isArray(res) ? res : res.data || [];
         setMenuItems(data);
         setLoading(false);
       })
       .catch(err => {
         setLoading(false);
         console.error('加载菜单失败:', err);
+        setMenuItems([]); // 失败时设置为空数组，防止 map 报错
       });
   }, []);
 
@@ -36,6 +39,10 @@ const Layout = ({ children }) => {
 
   // 渲染菜单逻辑
   const renderMenuItems = items => {
+    if (!Array.isArray(items)) {
+      console.error('renderMenuItems: items is not an array', items);
+      return null;
+    }
     return items.map(item => {
       const hasChildren = item.children && item.children.length > 0;
       const isActive = location.pathname === item.path;

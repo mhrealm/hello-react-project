@@ -29,10 +29,15 @@ export default defineConfig({
   server: {
     port: 3000,
     proxy: {
-      // 如果你之前在 craco 配置过代理，在这里迁移
       '/api': {
-        target: 'http://localhost:8080',
+        target: 'http://localhost:9999',
         changeOrigin: true,
+        rewrite: path => path.replace(/^\/api/, ''),
+      },
+      '/food-api': {
+        target: 'http://localhost:3004',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/food-api/, ''),
       },
     },
   },

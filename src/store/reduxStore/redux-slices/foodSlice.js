@@ -19,7 +19,7 @@ const foods = createSlice({
 const { setFoodList } = foods.actions
 const fetchFoodList = () => {
   return async dispatch => {
-    const res = await axios.get('http://localhost:3004/takeaway')
+    const res = await axios.get('/food-api/takeaway')
     dispatch(setFoodList(res.data))
   }
 }

@@ -4,7 +4,7 @@ import './index.less'
 
 const Index = () => {
   const fetchChange = async () => {
-    const params = await axios.post('http://localhost:3000/api/goodsList')
+    const params = await axios.post('/api/goodsList')
     console.log(params)
   }
   return (
